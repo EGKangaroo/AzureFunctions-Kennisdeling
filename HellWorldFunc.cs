@@ -6,6 +6,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Azure.WebJobs.ServiceBus;
 using Newtonsoft.Json;
 
 namespace AzureFunctions_Kennisdeling
@@ -13,6 +14,7 @@ namespace AzureFunctions_Kennisdeling
     public static class HellWorldFunc
     {
         [FunctionName("Hello")]
+        [return: ServiceBus("azqueue", EntityType = ServiceBusEntityType.Queue)]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
