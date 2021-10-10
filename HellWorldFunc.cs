@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace AzureFunctions_Kennisdeling
 {
-    public static class Function1
+    public static class HellWorldFunc
     {
-        [FunctionName("Function1")]
+        [FunctionName("Hello")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -23,11 +23,11 @@ namespace AzureFunctions_Kennisdeling
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            name ??= data?.name;
 
             string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+                ? "Hello, world!"
+                : $"Hello, {name}.";
 
             return new OkObjectResult(responseMessage);
         }
