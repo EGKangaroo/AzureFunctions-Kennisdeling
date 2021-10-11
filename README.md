@@ -13,3 +13,7 @@
 ## Branches
 * step-1-basic-function: een simpele HTTP call naar een azure function
 * step-2-queue: twee azure functions die communiceren met een azure service bus
+
+## Belangrijk
+Op een gegeven moment verwijder ik de azure service bus die draait op mijn azure portal, m.a.w. als je het wil testen maak je eigen azure service bus en voeg deze regel toe aan je local.settings.json:
+"AzureWebJobsServiceBus": {jouw primary connection string}
